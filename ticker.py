@@ -4,12 +4,18 @@ Read, Parse, Post Stats to InfluxDB.
 
 import Common.sensors as sensors
 import Common.influx as influx
+import Common.net as net
 
 
 # #############################################################################
 # Load Data from Netatmo
 # #############################################################################
 readings, epochs = sensors.get_netatmo_readings()
+
+# #############################################################################
+# Check VPN Status
+# #############################################################################
+is_vpn_connected = net.is_vpn_connected()
 
 # #############################################################################
 # Build Data Post
@@ -27,6 +33,10 @@ for module_name, module_values in zip(readings.keys(), readings.values()):
               value, \
               epochs[module_name] )
         lines.append(line)
+
+# VPN Status
+line = "is_vpn_connected value=%s" % is_vpn_connected
+lines.append(line)
 
 # Join
 data = "\n".join(lines)
