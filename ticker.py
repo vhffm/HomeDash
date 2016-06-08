@@ -54,7 +54,7 @@ if args.netatmo:
 
 # VPN Status
 if args.vpn:
-    line = "is_vpn_connected value=%s" % is_vpn_connected
+    line = "is_vpn_connected value=%ii" % is_vpn_connected
     lines.append(line)
 
 # Join
