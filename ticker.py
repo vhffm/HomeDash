@@ -5,6 +5,7 @@ Read, Parse, Post Stats to InfluxDB.
 import Common.sensors as sensors
 import Common.influx as influx
 import Common.net as net
+import socket
 import argparse
 
 
@@ -35,6 +36,11 @@ if args.vpn:
     is_vpn_connected = net.is_vpn_connected()
 
 # #############################################################################
+# #############################################################################
+# Get Hostname
+# #############################################################################
+hostname = socket.gethostname()
+
 # Build Data Post
 # NB: For InfluxDB >=0.9.3, integer data points require a trailing i.
 #     For example, ncpus_allocated,parititon=cpu value=5i
@@ -54,7 +60,8 @@ if args.netatmo:
 
 # VPN Status
 if args.vpn:
-    line = "is_vpn_connected value=%ii" % is_vpn_connected
+    line = "is_vpn_connected,host=%s value=%ii" % \
+        ( hostname, is_vpn_connected )
     lines.append(line)
 
 # Join
