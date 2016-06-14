@@ -4,6 +4,10 @@
 
 This is a collection of Python scripts to poll your environmental data from a [Netatmo](http://netatmo.com) device as well as filesystem and VPN connectivity status from a Linux system, and then upload it to an instance of [InfluxDB](https://influxdb.com/). You can then use something like [Grafana](http://www.grafana.org) to visualise the measurements.
 
+## Example
+
+![Grafana Home Dashboard](/Screenshots/grafana.png?raw=true)
+
 ## Usage
 
 - Put your InfluxDB access data in the *userpass_influx* file. See also *userpass_influx_example*.
