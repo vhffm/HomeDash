@@ -30,7 +30,10 @@ if not args.netatmo and not args.vpn and not args.fs:
 # Load Data from Netatmo
 # #############################################################################
 if args.netatmo:
-    readings, epochs = sensors.get_netatmo_readings()
+    readings, epochs = \
+        sensors.get_netatmo_readings(station='Lv114',\
+                                     modules=['Living Room', \
+                                              'Balcony/SW'])
 
 # #############################################################################
 # Check VPN Status
