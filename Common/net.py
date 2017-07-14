@@ -3,7 +3,6 @@ Networking Stuff.
 """
 
 import requests
-import socket
 
 
 def is_vpn_connected():
@@ -17,8 +16,8 @@ def is_vpn_connected():
     # List of public IPs associated with VPN nodes.
     vpn_list = load_vpn_list()
 
-    # Resolve using socket to avoid getting an IPv6 address
-    r = requests.get("http://%s" % socket.gethostbyname('icanhazip.com'))
+    # This may fail if we have IPv6 running (then we get an IPv6 address)
+    r = requests.get('http://icanhazip.com')
     ip = r.text.split()[0]
 
     if ip in vpn_list:
